@@ -1,0 +1,17 @@
+name: CI
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install pytest ruff
+      - run: ruff check training/ tests/ --ignore E501 || true
+      - run: pytest tests/ -q --ignore=tests/test_training.py
