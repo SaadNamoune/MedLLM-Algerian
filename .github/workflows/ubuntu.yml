@@ -1,8 +1,6 @@
 on:
-  workflow_dispatch: # Manually running a workflow
-  push:
-    branches:
-      - release/*
+  workflow_dispatch:
+
 name: Linux build
 jobs:
   test-ubuntu:
